@@ -1,0 +1,5 @@
+@import url("core.css") all;                                /* basic styles + feature phones, etc. */
+@import url("x460.css") screen and (min-width: 460px);      /* smart phones (landscape) + high px density screen smart phones */
+@import url("x580.css") screen and (min-width: 580px);      /* small tablets (portrait) */
+@import url("x748.css") screen and (min-width: 748px);      /* small tablets (landscape) + small desktop monitors */
+@import url("x940.css") screen and (min-width: 940px);      /* tablets + desktop monitors */
