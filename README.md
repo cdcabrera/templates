@@ -1,4 +1,4 @@
-html5-template
+html-ttemplates
 ==============
 
-A basic html5 page template.
+Basic html/html5 page templates. 
