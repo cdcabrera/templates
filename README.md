@@ -1,4 +1,4 @@
-html-ttemplates
+Page Templates
 ==============
 
-Basic html/html5 page templates. 
+Basic html/xhtml/html5 page templates. 
