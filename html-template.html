@@ -1,92 +1,167 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>       <html class="no-js lt-ie9 lt-ie8 lt-ie7">    <![endif]-->
-<!--[if IE 7]>          <html class="no-js lt-ie9 lt-ie8">           <![endif]-->
-<!--[if IE 8]>          <html class="no-js lt-ie9">                  <![endif]-->
-<!--[if gt IE 8]><!-->  <html class="no-js"> 
-  <head>
-    <title>html template</title>
-    <meta charset="utf-8">
-    <meta name="description"        content="html template">
-    <meta name="author"             content="">
-    <meta name="HandheldFriendly"   content="True">
-    <meta name="MobileOptimized"    content="320">
-    <meta name="viewport"           content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+<!--[if lt IE 8]>       <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en">    <![endif]-->
+<!--[if IE 8]>          <html class="no-js lt-ie10 lt-ie9" lang="en">           <![endif]-->
+<!--[if IE 9]>          <html class="no-js lt-ie10" lang="en">                  <![endif]-->
+<!--[if gt IE 9]><!-->  <html class="no-js" lang="en">                          <!--<![endif]-->
+    <head>
+        <title>html template</title>
+        <meta charset="utf-8" />
 
-    <!-- styles -->
-    <link rel="stylesheet" href="style/css/master.css">
+        <!-- Fun with IE & ie9/windows pinned sites -->
+        <meta http-equiv="X-UA-Compatible"      content="IE=edge,chrome=1">
+        <meta http-equiv="cleartype"            content="on">
+        <meta name="msapplication-TileImage"    content="style/icons/apple-touch-icon-xlrg.png">
+        <meta name="msapplication-TileColor"    content="#333333">
+        <meta name="msapplication-task"         content="name=[Site Name]; action-uri=[Site Url]; icon-uri=style/icons/apple-touch-icon.png">
 
-    <!--[if (lt IE 9) & (!IEMobile)]>
+        <meta name="description"                content="html template">
+        <meta name="author"                     content="">
+        <meta name="HandheldFriendly"           content="True">
+        <meta name="MobileOptimized"            content="320">
+        <meta name="viewport"                   content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style/css/ie.css">
+        <!-- shortcut/mobile "save to home screen" icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="57x57"      href="style/icons/apple-touch-icon-sml.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72"      href="style/icons/apple-touch-icon-med.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114"    href="style/icons/apple-touch-icon-lrg.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144"    href="style/icons/apple-touch-icon-xlrg.png">
 
-    <![endif]-->
+        <!-- ios mobile app information -->
+        <meta name="apple-mobile-web-app-capable"           content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style"  content="black">
 
-    <!-- shortcut/mobile "save to home screen" icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="57x57"      href="style/icons/apple-touch-icon-sml.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"      href="style/icons/apple-touch-icon-med.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"    href="style/icons/apple-touch-icon-lrg.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"    href="style/icons/apple-touch-icon-xlrg.png">
+        <!-- iphone splashscreen -->
+        <link rel="apple-touch-startup-image" href="style/icons/splash-320x460.png" media="(device-width: 320px)">
+        <link rel="apple-touch-startup-image" href="style/icons/splash-640x920.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)">
 
-    <!-- ios mobile app information -->
-    <meta name="apple-mobile-web-app-capable"           content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style"  content="black">
+        <!-- ipad splashscreen -->
+        <link rel="apple-touch-startup-image" href="style/icons/splash-768x1004.png"     media="(device-width: 768px) and (orientation: portrait)">
+        <link rel="apple-touch-startup-image" href="style/icons/splash-748x1024.png"     media="(device-width: 768px) and (orientation: landscape)">
+        <link rel="apple-touch-startup-image" href="style/icons/splash-1536x2008.png"    media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)">
+        <link rel="apple-touch-startup-image" href="style/icons/splash-1496x2048.png"    media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)">
 
-    <!-- iphone splashscreen -->
-    <link rel="apple-touch-startup-image" href="style/icons/splash-320x460.png" media="(device-width: 320px)">
-    <link rel="apple-touch-startup-image" href="style/icons/splash-640x920.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)">
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="style/icons/apple-touch-icon-sml.png">
 
-    <!-- ipad splashscreen -->
-    <link rel="apple-touch-startup-image" href="style/icons/splash-768x1004.png"     media="(device-width: 768px) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="style/icons/splash-748x1024.png"     media="(device-width: 768px) and (orientation: landscape)">
-    <link rel="apple-touch-startup-image" href="style/icons/splash-1536x2008.png"    media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)">
-    <link rel="apple-touch-startup-image" href="style/icons/splash-1496x2048.png"    media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)">
 
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="shortcut icon" href="style/icons/apple-touch-icon-sml.png">
+        <!-- styles, personal preference-->
+        <link rel="stylesheet" href="style/css/master.css">
 
-    <!-- ie9/windows pinned sites -->
-    <meta name="msapplication-task" content="name=[Site Name]; action-uri=[Site Url]; icon-uri=style/icons/apple-touch-icon.png">
+        <!--[if (lt IE 9) & (!IEMobile)]>
+            <link rel="stylesheet" href="style/css/ie.css">
+        <![endif]-->
 
-    <!-- windows specific -->
-    <meta http-equiv="cleartype"        content="on">
-    <meta http-equiv="X-UA-Compatible"  content="IE=Edge">
+        <script src="js/header.js"></script>
+    </head>
+    <body>
+        <!--
+            1. mods are based on testing with JAWS. had one goal streamline the accessibility aspect
 
-  </head>
-  <body>
-    <div role="navigation">
-    	mobile/accessibility
-    </div>
-    <div role="main">
-      <div role="heading">
-        <h1>html template</h1>
-        <div role="navigation directory">
-          optional sectional navigation
+            2. removed the top region based on how JAWS reads regions, might place it back in there.
+
+            3. punctuation seems to be key.
+
+            4. removed breadcrumbs and instead thought about placing a previous page link in the initial navigation
+                a.  removed breadcrumbs entirely because currently the way a lot of us seem to use them makes it
+                    difficult to "read" out a hierarchy without being wordy. an alternative could be just to hide
+                    the section from screen readers...
+                b.  http://blog.paciellogroup.com/2012/05/html5-accessibility-chops-hidden-and-aria-hidden/
+
+            5.  really like the idea of grouping all of the navigation together with the exception of the "initial" nav.
+
+            6.  removed the branding header section, for my purposes was too much. plus had the added benefit of not
+                reading another region
+        -->
+
+        <!--ul role="navigation"-->
+        <ul>
+            <li><a href="#navigation" title="Menu"><span>Skip to site navigation.</span></a></li>
+            <li><a href="#"><span>Home.</span></a></li>
+            <!-- <li><a href="#"><span>Previous Page.</span></a></li> -->
+        </ul>
+
+
+        <div role="main">
+            <div role="heading banner">
+                <h1>html template.</h1>
+            </div>
+            <div>
+                main content.
+            </div>
         </div>
-      </div>
-      <div>
-        main content
-      </div>
-      <div role="complementary">
-        supplemental content
-      </div>
-      <div role="footer">
-        <div role="navigation menubar progress">
-          breadcrumb/progress bar
+
+
+        <div role="complementary">
+            <div>
+                <h1>supplemental information.</h1>
+            </div>
+            <div>
+                supplemental content. <!-- perhaps "comments" or a survey -->
+            </div>
         </div>
-      </div>
-    </div>
-    <div role="heading">
-      <div role="presentation img">
-        logo/site branding
-      </div>
-      <div role="navigation">
-        project wide navigation
-      </div>
-    </div>
-    <div role="footer">
-      <div role="navigation menubar">
-        more links
-      </div>
-    </div>
-  </body>
+
+
+        <div role="navigation">
+            <!-- main nav, used the "assertive" flag in combination with the initial navigation -->
+            <div>
+                <ul id="navigation" role="menubar" aria-live="assertive">
+                    <li role="menuitem"><a href="#">link</a></li>
+                    <li role="search">
+                        <div>
+                            <input type="search" />
+                            <a role="button" href="#">search</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- footer -->
+            <div>
+                <ul role="menubar">
+                    <li role="menuitem"><a href="#">link</a></li>
+                </ul>
+            </div>
+
+            <!--
+                alternate footer...
+                "menuitems" don't sound like they to need to be directly under "menubar" roles
+            -->
+            <!--
+            <div>
+                <ul role="menubar">
+                    <li>
+                        <strong>Subtitle</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit <acronym title="ellipsis.">...</acronym>
+                        </p>
+                        <ul>
+                            <li><a role="menuitem" href="#">link</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Subtitle</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit <acronym title="ellipsis.">...</acronym>
+                        </p>
+                        <ul>
+                            <li><a role="menuitem" href="#">link</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Subtitle</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit <acronym title="ellipsis.">...</acronym>
+                        </p>
+                        <ul>
+                            <li><a role="menuitem" href="#">link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            -->
+
+        </div>
+
+        <script src="js/footer.js"></script>
+    </body>
 </html>
