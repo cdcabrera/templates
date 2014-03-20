@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>       <html class=" no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]>          <html class=" no-js lt-ie10 lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]>          <html class=" no-js lt-ie10 lt-ie9" lang="en-US"> <![endif]-->
+<!--[if IE 9]>          <html class=" no-js lt-ie10" lang="en-US"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class=" no-js" lang="en-US"><!--<![endif]--><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="all" name="robots">
+    <meta http-equiv="cleartype" content="on">
+
+    <title>another html5 template</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href="style/css/master.css" media="all">
+
+    <!--[if (lt IE 9)]>
+    <link rel="stylesheet" type="text/css" href="style/css/ie.css" media="screen" />
+    <![endif]--> 
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="style/icons/apple-touch-icon.png">
+
+    <!-- chrome bookmark icon -->
+    <link rel="shortcut icon" sizez="196x196" href="style/icons/icon-196x196.png">
+
+    <!-- iphone home screen icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="style/icons/icons/apple-touch-icon-sml.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="style/icons/apple-touch-icon-lrg.png">
+
+    <!-- ipad home screen icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="style/icons/apple-touch-icon-med.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="style/icons/apple-touch-icon-xlrg.png">
+
+    <!-- ios web app -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="another html5 template">
+
+    <!-- chrome bookmark -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-title" content="another html5 template">
+
+    <!-- iphones & ipod touch -->
+    <link rel="apple-touch-startup-image" href="style/icons/splash-320x460.png" media="(device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="style/icons/splash-640x920.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="style/icons/splash-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
+
+    <!-- ipad -->
+    <link rel="apple-touch-startup-image" href="style/icons/splash-768x1004.png"     media="(device-width: 768px) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="style/icons/splash-748x1024.png"     media="(device-width: 768px) and (orientation: landscape)" />
+    <link rel="apple-touch-startup-image" href="style/icons/splash-1536x2008.png"    media="(device-width: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="style/icons/splash-1496x2048.png"    media="(device-width: 768px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" />
+
+    <!-- win8 tile images & pinned site links -->
+    <meta name="application-name" content="another html5 template">
+    <meta name="msapplication-TileColor" content="#213163">
+    <meta name="msapplication-TileImage" content="style/icons/apple-touch-icon-xlrg.png" sizes="144x144">
+    <meta name="msapplication-square70x70logo" content="style/icons/win8-tile-small.png">
+    <meta name="msapplication-square150x150logo" content="style/icons/win8-tile-medium.png">
+    <meta name="msapplication-wide310x150logo" content="style/icons/win8-tile-wide.png">
+    <meta name="msapplication-square310x310logo" content="style/icons/win8-tile-large.png">
+    <meta name="msapplication-starturl" content="/">
+    <meta name="msapplication-tooltip" content="another html5 template">
+    <meta name="msapplication-task" content="name=another html5 template; action-uri=/; icon-uri=style/icons/apple-touch-icon-sml.png">
+
+    <!-- remove 'no-js' class before body loads, adds 'standalone' class if ios user has 'added to home screen', also check to see if app modal -->
+    <script type="text/javascript">
+(function(b,a){if(b){b.className=b.className.replace(a,"")}})(document.getElementsByTagName("HTML")[0],"no-js");if("standalone" in window.navigator&&window.navigator.standalone){(function(b,a){if(b){b.className=b.className.replace(a,"standalone ")}})(document.getElementsByTagName("HTML")[0],"")}function getUrlVars(){var g=[],h;var f=window.location.href.slice(window.location.href.indexOf("?")+1).split("&");for(var e=0;e<f.length;e++){h=f[e].split("=");g.push(h[0]);g[h[0]]=h[1]}return g}if(getUrlVars()["modal"]=='true'){(function(c,d){if(c){c.className=c.className.replace(d,"modal ")}})(document.getElementsByTagName("HTML")[0],"")};
+    </script>
+
+</head>
+<body>
+</body>
+</html>
