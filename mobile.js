@@ -1,5 +1,5 @@
 (function (window, undefined) {
-
+    // get all vars from url
     function getUrlVars() {
         var vars = [], hash;
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -11,6 +11,7 @@
         return vars;
     }
 
+    // change pointer for touch devices and add class to <html/>
     function pointerSettings(_settings) {
         var html = document.getElementsByTagName("html")[0];
         if (_settings.agent.indexOf('iPhone') != -1 || _settings.agent.indexOf('iPad') != -1 || _settings.agent.indexOf('Android') != -1) {
@@ -29,24 +30,26 @@
         }
     }
 
-    function appHeartbeat(_settings) {
+    // check online status of the page
+    function appHeartbeat(_settings,_model) {
         var index = _settings.online,
             message = document.getElementById("online-status");
         if (navigator.onLine) {
             _settings.online = true;
             _settings.interval++;
-            if (index != _settings.online) { onlineStatusChange(_settings.online) }
+            if (index != _settings.online) { _onlineStatusChange(_settings.online,_model) }
             message.innerHTML = "OnlineStatus: ONLINE: " + _settings.interval;
             return _settings;
         } else {
             _settings.online = false;
             _settings.interval++;
-            if (index != _settings.online) { onlineStatusChange(_settings.online) }
+            if (index != _settings.online) { _onlineStatusChange(_settings.online,_model) }
             message.innerHTML = "OnlineStatus: OFFLINE: " + _settings.interval;
             return _settings;
         }
     }
 
+    // app cache status, displays in debug panel
     function appCacheStatus(_settings) {
         var appCache = window.applicationCache,
             message = document.getElementById("app-cache-status");
@@ -78,6 +81,148 @@
         return _settings.cacheStatus;
     }
 
+    // going back online, allow form to submit
+    function fixFormSubmission(txt,id) {
+        var ele = document.getElementsByTagName("form")[0];
+        if (ele) {
+            var submit = document.getElementsByName("submit")[0];
+            submit.value = txt;
+            submit.onclick = function () {
+                localStorage.removeItem(id);
+                return true;
+            }
+        }
+    }
+
+    // you went offline, store form data to localStorage
+    function offlineFormData(txt,exception) {
+        var ele = document.getElementsByTagName("form")[0];
+        if (ele) {
+            var submit = document.getElementsByName("submit")[0];
+            submit.onclick = function () {
+                storeFormValuesLocalStorage(exception);
+                return false;
+            }
+            submit.value = txt;
+        }
+    }
+
+    // return visit to form, you have saved data, do you want to use it?
+    function loadData() {
+        var formUrl = window.location.href;
+        urlParts = formUrl.split("?");
+        baseUrl = urlParts[0].split("#");
+        var formId = "fd:" + baseUrl[0];
+        var formData = window.localStorage.getItem(formId);
+        if (formData) {
+            var current = new Date(),
+                prev = new Date(JSON.parse(formData)[0].value),
+                timepassed = (current - prev),
+                day = prev.getDate(),
+                mon = prev.getMonth(),
+                yr = prev.getFullYear();
+
+            var months = {
+                0: "Jan.",
+                1: "Feb.",
+                2: "Mar.",
+                3: "Apr.",
+                4: "May",
+                5: "Jun.",
+                6: "Jul.",
+                7: "Aug.",
+                8: "Sep.",
+                9: "Oct.",
+                10: "Nov.",
+                11: "Dec."
+            }
+
+            function getMonthName(int) {
+                monthName = months[int];
+                return monthName;
+            }
+            
+            var dataTimeStamp = getMonthName(mon) + " " + day + ", " + yr;
+
+            var loadSavedData = confirm("Welcome back. Load your saved data from " + dataTimeStamp + "?");
+            if (loadSavedData) {
+                for (var i = 1; i < JSON.parse(formData).length; i++) {
+                 //   alert(JSON.parse(formData)[i].name);
+                    var key = JSON.parse(formData)[i].name,
+                        val = JSON.parse(formData)[i].value,
+                        chk = JSON.parse(formData)[i].checked,
+                        typ = JSON.parse(formData)[i].type;
+
+                    if (chk != "true") {
+                        document.getElementsByName(key)[0].value = val;
+                        //alert(key + ":" + val);
+                    } else {
+                        var inputs = document.getElementsByName(key);
+                        for (var j = 0; j < inputs.length; j++) {
+                            var trueValue = inputs[j].value;
+                            if (val == trueValue) {
+                                inputs[j].checked = true;
+                            }
+                        }
+                    }
+                }
+            } else {
+                var deleteSavedData = confirm("Would you like to delete your saved data?");
+                if (deleteSavedData) {
+                    window.localStorage.setItem(formId, "");
+                    alert("Data Deleted");
+                }
+            }
+        }
+    }
+
+    // loop through the form and store the data, there is a css class that will  make this ignore an input
+    function storeFormValuesLocalStorage(exception) {
+        var ele = document.getElementsByTagName("form")[0];
+            // create a unique id for the form that can be duplicated, on page, on return visits...           
+            var formUrl = window.location.href;
+            urlParts = formUrl.split("?");
+            baseUrl = urlParts[0].split("#");
+            var formId = "fd:" + baseUrl[0];
+            var formData = window.localStorage.getItem(formId);
+            if (!formData) {
+                var timeStamp = new Date();
+                var fields = ele.elements,
+                    data = "{\"name\": \"time_stamp\", \"value\":\"" + timeStamp + "\", \"type\":\"datetime\"}";
+                for (var i = 0; i < fields.length; i++) {
+
+                    var key = fields[i].name,
+                        val = fields[i].value,
+                        type = fields[i].type,
+                        cssClass = fields[i].className,
+                        checked = "";
+
+                    if (cssClass.indexOf(exception) == -1 && fields[i].readOnly == false && fields[i].disabled == false && type != "password") {
+                        val = val.replace(/["]/g, "&#34;").replace(/[']/g, "&#39;").replace(/[&]/g, '&amp;').replace(/[<]/g, '&lt;').replace(/[>]/g, '&gt;').replace(/(?:\s\s+|\n|\t)/g, ' ');
+
+                        if (type == "radio" || type == "checkbox") { checked = ", \"checked\":\"" + fields[i].checked + "\""; }
+                        var obj = ",{\"name\": \"" + key + "\", \"value\": \"" + val + "\", \"type\": \"" + type + "\"" + checked + "}";
+
+                        if (val.length >= 1 && type != "submit" && type != "reset" && type != "radio" && type != "checkbox") {
+                            data += obj;
+                        }
+                        else if ((type == "radio" || type == "checkbox") && fields[i].checked === true) {
+                            data += obj;
+                        }
+                    }
+                }
+                window.localStorage.setItem(formId, "[" + data + "]");
+                alert("Data saved.");
+            } else {
+                var replace = confirm("This will replace your previously saved data. Are you sure?");
+                if (replace) {
+                    window.localStorage.setItem(formId, "");
+                    storeFormValuesLocalStorage(exception);
+                }
+            }
+    }
+
+    // for mobile/touch interfaces, replaces click event. removes the 300ms delay before action.
     function updatePageLinks(cssException) {
             var getLinks = document.links;
             if (getLinks.length >= 1) {
@@ -110,6 +255,7 @@
             }
         }
 
+    // bookmark prompt for mobile devices
     function mobilePrompt(_settings) {
         var destination = document.getElementsByTagName("body")[0];
         if (!window.navigator.standalone) {
@@ -190,12 +336,14 @@
         }
     }
 
+    // user dismisses the bookmark prompt, dont bother them again. uses localStorage.
     function _userDismissPrompt(ele) {
         window.localStorage.setItem("dismiss", true);
         var prompt = ele.parentNode.parentNode;
         prompt.style.display = "none";
     }
 
+    // make the prompt go away after a couple of seconds (set in _settings obj)
     function autoDismissPrompt(ele) {
         var prompt = document.getElementById("bookmark-prompt");
         if (prompt != null) {
@@ -203,6 +351,7 @@
         }
     }
 
+    // count visits
     function visitorInfo() {
         if (_settings.visitCount == null) {
             _settings.visitCount = 1;
@@ -215,25 +364,35 @@
         }
     }
 
+    // works with app cache enabled. user is offline and starts web app.
     function _initialOffline() {
         // application started offline, do something
         alert("You are currently offline.");
+        offlineFormData(_model.buttons.save,_settings.formStorageExceptionCss);
     }
 
+    // online status changes
     function _onlineStatusChange(status) {
         // your code for going online/offline goes here
         switch (status) {
             case true:
                 var message = "online"
                 alert("You have gone " + message + ".");
+                var formUrl = window.location.href;
+                urlParts = formUrl.split("?");
+                baseUrl = urlParts[0].split("#");
+                var formId = "fd:" + baseUrl[0];
+                fixFormSubmission(_model.buttons.submit,formId);
                 break;
             case false:
                 var message = "offline"
                 alert("You have gone " + message + ".");
+                offlineFormData(_model.buttons.save,_settings.formStorageExceptionCss);
                 break;
         }
     }
 
+    // create, populate the debug panel
     function debug() {
         var debug = document.createElement("ul");
         debug.setAttribute("id", "debug-panel");
@@ -255,11 +414,22 @@
         press: "click",
         agent: navigator.userAgent,
         clickExceptionCss: "needs-click", // strictly for ios 'standalone' apps
+        formStorageExceptionCss: "no-storage",
         visitCount: window.localStorage.getItem("visits"),
         mobilePromptDismiss: 20000,
         heartBeatTimer: 1000,
         appCachStatusTimer: 1000
-    }
+        },
+        _ele = {
+            submit: document.getElementsByName("submit")[0],
+            reset: document.getElementsByName("reset")[0]
+        },
+        _model = {
+            buttons: {
+                submit: "Submit Data",
+                save: "Save Data"
+            }
+        }
 
     // build the debug panel, add ?debug=true to url to view
     debug();
@@ -271,7 +441,15 @@
     if (window.localStorage.getItem("dismiss") != "true") { window.localStorage.setItem("dismiss", false); mobilePrompt(_settings); }
 
     // are we online or offline, onload?
-    if (!navigator.onLine) { _settings.online = false; initialOffline(); }
+    if (!navigator.onLine) {
+        _settings.online = false;
+        _initialOffline(_model.buttons.save,_settings.formStorageExceptionCss);
+        loadData();
+    } else {
+        _ele.submit.value = _model.buttons.submit;
+        loadData();
+    }
+
     appHeartbeat(_settings)
 
     // what is the manifest file doing, onload?
@@ -289,7 +467,7 @@
         }
     }
     // set a timer on the appHeartbeat()... did we go online/offline since page load?
-    var appHeartbeatTimer = setInterval(function () { appHeartbeat(_settings); }, _settings.heartBeatTimer);
+    var appHeartbeatTimer = setInterval(function () { appHeartbeat(_settings,_model); }, _settings.heartBeatTimer);
 
     // get manifest file status feedback
     var appCacheStatusTimer = setInterval(function () { appCacheStatus(_settings); }, _settings.appCachStatusTimer);
