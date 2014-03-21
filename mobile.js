@@ -147,7 +147,6 @@
             var loadSavedData = confirm("Welcome back. Load your saved data from " + dataTimeStamp + "?");
             if (loadSavedData) {
                 for (var i = 1; i < JSON.parse(formData).length; i++) {
-                 //   alert(JSON.parse(formData)[i].name);
                     var key = JSON.parse(formData)[i].name,
                         val = JSON.parse(formData)[i].value,
                         chk = JSON.parse(formData)[i].checked,
@@ -155,7 +154,6 @@
 
                     if (chk != "true") {
                         document.getElementsByName(key)[0].value = val;
-                        //alert(key + ":" + val);
                     } else {
                         var inputs = document.getElementsByName(key);
                         for (var j = 0; j < inputs.length; j++) {
